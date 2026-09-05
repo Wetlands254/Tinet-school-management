@@ -1,31 +1,35 @@
-# Tinet Primary and Junior School Management System
+# Tinet Primary and Junior School Management System — V2
 
-A modern browser-based school management prototype.
+GitHub Pages-ready school management system for Tinet Primary and Junior School.
 
-## Included
-- Separate ECDE, Primary and Junior sections
-- Lower Primary (Grades 1–3) one-teacher class model
-- Upper Primary (Grades 4–6)
-- Junior School Grades 7–9 with 9 default subjects
-- Class-specific subject add/deactivate
-- Section/class-specific fees
-- Learners and teachers
-- Marks, average-based grading and class ranking
-- Colourful individual reports with charts and signatures
-- Attendance
-- Timetable generator with separate ECDE/Primary/Junior timing rules
-- Teacher timetable
-- Printing/A4 CSS
-- Administrator password/security settings
-- Initial admin: admin / Tinet123
-- Recovery phone: 0718134443
-- Demo OTP recovery flow, clearly marked for provider integration
-- JSON backup and audit log
+## V2 upgrades
 
-## Important production note
-This version is a functional browser prototype. It stores data in localStorage and cannot itself send a real SMS or USSD request. For live school use, move authentication/data to a secure backend/database and connect a legitimate Kenyan SMS/USSD provider. Never expose API keys in frontend JavaScript.
+- Academic year + Term are now central to the system.
+- Fees are stored separately for every class, academic year and term.
+- Changing a new term's fee does not alter previous-term payment records.
+- Subjects can be added to one class, a whole section, or all classes.
+- Subjects can be deactivated/reactivated without deleting historical marks.
+- Subject combinations are term/year aware.
+- Weekly lesson frequency and double-lesson settings can be configured per subject/class/term.
+- Reports and rankings use the active subjects for the selected assessment period.
+- Academic periods can be opened/closed and switched from Settings.
+- Existing V1 local browser data is migrated into the V2 structure on first load.
 
-## Run
-Open `index.html` in a modern browser.
+## Current deployment mode
 
-For a live deployment, use a secure HTTPS server and persistent backend database.
+The GitHub Pages frontend currently uses browser local storage for its working data. The included `supabase-schema.sql` is the V2 database foundation for a later Supabase connection.
+
+**Do not put Supabase service-role keys in GitHub Pages or browser code.** Production authentication and Row Level Security policies should be configured before storing real school data.
+
+## Default period
+
+- Academic year: 2026
+- Term: Term 3
+- Junior default: 9 subjects
+
+## Default administrator
+
+- Username: `admin`
+- Initial password: `Tinet123`
+
+Change the initial password immediately after first login. The browser prototype's password storage is not a substitute for server-side authentication.
